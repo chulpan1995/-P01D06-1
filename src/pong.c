@@ -12,7 +12,7 @@ int main()
     int yBall = visota / 2; 
     int score_A = 0;
     int score_B = 0;
-    int b_move = 2;
+    int b_move = 5;
     
     //int ball (xBall, yBall)
  
@@ -20,6 +20,7 @@ int main()
     {
         screen (Lpad, Rpad, xBall, yBall, visota, shirina, score_A, score_B); 
  
+ //vvod s kaviaturi
         char v;
         scanf("%c", &v);
         if (v == 'A' || v == 'a') {
@@ -49,7 +50,6 @@ int main()
             yBall = visota/2;
             Lpad = (visota / 2) - 2;
             Rpad = (visota /2 ) -2;
-            b_move = 5;
             score_A++;
         }
         //Right goal
@@ -58,7 +58,6 @@ int main()
             yBall = visota / 2;
             Lpad = (visota / 2) -1;
             Rpad = (visota / 2) -1;
-            b_move = 2;
             score_B++;
         }
         //ball move
@@ -88,6 +87,33 @@ int main()
              xBall--;
              yBall--;
         }
+
+        //otbivka Rpad
+        if (xBall == shirina - 4) {
+            if (yBall == Rpad) {
+                b_move = 6;
+            }
+             if (yBall == Rpad + 1) {
+                b_move = 5;
+            }
+             if (yBall == Rpad + 2) {
+                b_move = 4;
+            }
+        }
+
+        //otbivka Lpad
+        if (xBall == 4) {
+            if (yBall == Lpad) {
+                b_move = 1;
+            }
+             if (yBall == Lpad + 1) {
+                b_move = 2;
+            }
+             if (yBall == Lpad + 2) {
+                b_move = 3;
+            }
+        }
+
     }
     score_points(score_A, score_B);
     
