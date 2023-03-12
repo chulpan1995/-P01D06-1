@@ -1,6 +1,7 @@
 #include <stdio.h>
 void screen (int Lpad, int Rpad, int xBall, int yBall, int visota, int shirina, int score_A, int score_B);
 void score_points (int score_A, int score_B);
+//void Lev_goal(int xBall, int yBall, int visota, int shirina, int score_A, int score_B)
 int main()
 {
     int shirina = 80;
@@ -11,11 +12,14 @@ int main()
     int yBall = visota / 2; 
     int score_A = 0;
     int score_B = 0;
+    int b_move = 2;
+    
     //int ball (xBall, yBall)
  
     while (1)
     {
         screen (Lpad, Rpad, xBall, yBall, visota, shirina, score_A, score_B); 
+ 
         char v;
         scanf("%c", &v);
         if (v == 'A' || v == 'a') {
@@ -36,7 +40,60 @@ int main()
             if (Rpad + 2 < visota - 1)
             Rpad ++; 
         }
+        else if (v == 'Q' || v == 'q') {
+            break;
+        }
+        //Left goal
+        if (xBall == 1) {
+            xBall = shirina/2;
+            yBall = visota/2;
+            Lpad = (visota / 2) - 2;
+            Rpad = (visota /2 ) -2;
+            b_move = 5;
+            score_A++;
+        }
+        //Right goal
+        if (xBall == shirina - 2) {
+            xBall = shirina / 2;
+            yBall = visota / 2;
+            Lpad = (visota / 2) -1;
+            Rpad = (visota / 2) -1;
+            b_move = 2;
+            score_B++;
+        }
+        //ball move
+        if (b_move == 1) {
+            xBall++;
+            yBall--;
+        }
+        if (b_move == 2) {
+            xBall++;
+        }
+        if (b_move == 3)
+        {
+            xBall++;
+            yBall++;
+        }
+        if (b_move == 4)
+        {
+            xBall--;
+            yBall++;
+        }
+        if (b_move == 5)
+        {
+            xBall--;
+        }
+        if (b_move == 6)
+        {
+             xBall--;
+             yBall--;
+        }
     }
+    score_points(score_A, score_B);
+    
+    //Lev_goal(xBall, yBall, visota, shirina, score_A, score_B);
+   
+
 //return 0;
 }
 void screen (int Lpad, int Rpad, int xBall, int yBall, int visota, int shirina, int score_A, int score_B) {
@@ -49,10 +106,10 @@ void screen (int Lpad, int Rpad, int xBall, int yBall, int visota, int shirina, 
             {
                 printf("*");
             }
-            else if (y >= Lpad && y < Lpad + 3 && x == 2) {
+            else if (y >= Lpad && y < Lpad + 3 && x == 3) {
                 printf("|");
             }
-            else if (y >= Rpad && y < Rpad + 3 && x == shirina - 2) {
+            else if (y >= Rpad && y < Rpad + 3 && x == shirina - 3) {
             printf("|"); }
             else if (y == yBall && x == xBall) {
                 printf("@");
@@ -67,11 +124,17 @@ printf("1st player score: %d\n2nd player score: %d\n", score_A, score_B);
 }
 
 void score_points (int score_A, int score_B) {
-    printf("1st player score: %d", score_A);
-    printf("2nd Player score: %d", score_B);
+    printf("1st player score: %d\n", score_A);
+    printf("2nd Player score: %d\n", score_B);
     if (score_A >= 21) {
     printf("1st Player WON!!!");
     } if (score_B >= 21) {
         printf("2nd Player WON!!!"); 
     }
 }
+
+/*void Lev_goal(int xBall, int yBall, int visota, int shirina, int score_A, int score_B)
+    if (xBall >= shirina + 1 || y_ball < visota +1 ) {
+        score_A += 1;
+        score_A++;
+    } */
