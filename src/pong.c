@@ -1,5 +1,6 @@
 #include <stdio.h>
-void screen (int Lpad, int Rpad, int xBall, int yBall, int visota, int shirina);
+void screen (int Lpad, int Rpad, int xBall, int yBall, int visota, int shirina, int score_A, int score_B);
+void score_points (int score_A, int score_B);
 int main()
 {
     int shirina = 80;
@@ -8,11 +9,13 @@ int main()
     int Rpad = (visota / 2 ) - 1;
     int xBall = shirina / 2;
     int yBall = visota / 2; 
+    int score_A = 0;
+    int score_B = 0;
     //int ball (xBall, yBall)
  
     while (1)
     {
-        screen (Lpad, Rpad, xBall, yBall, visota, shirina); 
+        screen (Lpad, Rpad, xBall, yBall, visota, shirina, score_A, score_B); 
         char v;
         scanf("%c", &v);
         if (v == 'A' || v == 'a') {
@@ -36,7 +39,7 @@ int main()
     }
 //return 0;
 }
-void screen (int Lpad, int Rpad, int xBall, int yBall, int visota, int shirina) {
+void screen (int Lpad, int Rpad, int xBall, int yBall, int visota, int shirina, int score_A, int score_B) {
     for (int y = 0; y <= visota; y++) {
         for (int x = 0; x <=shirina; x++) {
             if ((y == 0 || y == visota) && x != 0 && x <= shirina -1) {
@@ -59,5 +62,16 @@ void screen (int Lpad, int Rpad, int xBall, int yBall, int visota, int shirina) 
             }
         }
         printf("\n");
+    }
+printf("1st player score: %d\n2nd player score: %d\n", score_A, score_B);
+}
+
+void score_points (int score_A, int score_B) {
+    printf("1st player score: %d", score_A);
+    printf("2nd Player score: %d", score_B);
+    if (score_A >= 21) {
+    printf("1st Player WON!!!");
+    } if (score_B >= 21) {
+        printf("2nd Player WON!!!"); 
     }
 }
